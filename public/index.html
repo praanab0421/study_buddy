@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Study Buddy AI turns your notes into summaries, explanations and practice quizzes.">
+  <title>Study Buddy AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand-mark">🎓</div>
+    <div class="brand">Study Buddy <span>AI</span></div>
+    <p class="tagline">Learn · Practice · Excel</p>
+    <nav>
+      <a class="nav-link active" href="#home">⌂ <span>Home</span></a>
+      <a class="nav-link" href="#upload">▤ <span>My Uploads</span></a>
+      <a class="nav-link" href="#tools">☑ <span>Study tools</span></a>
+      <a class="nav-link" href="#result">▥ <span>Results</span></a>
+      <a class="nav-link" href="#about">ⓘ <span>About</span></a>
+    </nav>
+    <div class="sidebar-quote">“A better you,<br>through smarter<br>learning.”</div>
+    <div class="sidebar-bottom">Made for curious learners ✦</div>
+  </aside>
+
+  <main id="home" class="main">
+    <header class="topbar">
+      <div class="mobile-brand">🎓 Study Buddy <span>AI</span></div>
+      <span class="campus-pill">▥ &nbsp; BSSRV Student Project</span>
+      <div class="avatar">R</div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="eyebrow">YOUR PERSONAL STUDY SPACE</p>
+        <h1>Study <span>smarter,</span><br>not harder.</h1>
+        <p class="hero-sub">Your personal AI-powered learning companion.</p>
+        <div class="hero-underline"></div>
+      </div>
+      <div class="mascot" aria-hidden="true">🤖<span>📘</span></div>
+      <div class="hero-note">Let's learn<br>together!</div>
+    </section>
+
+    <section class="content-grid">
+      <div class="left-column">
+        <section class="panel upload-panel" id="upload">
+          <div class="section-heading">
+            <div class="heading-icon blue">☁</div>
+            <div><h2>Upload your study material</h2><p>Upload a PDF to get started.</p></div>
+          </div>
+          <label class="dropzone" id="dropzone" for="pdfInput">
+            <div class="upload-symbol">⇧</div>
+            <strong id="dropTitle">Drop your PDF here</strong>
+            <span id="dropHint">or click to browse files · PDF up to 10 MB</span>
+            <input id="pdfInput" type="file" accept="application/pdf,.pdf">
+          </label>
+          <div class="file-row" id="fileRow" hidden>
+            <span class="file-icon">PDF</span><span id="fileName"></span><button id="removeFile" class="text-button">Remove</button>
+          </div>
+          <p class="status" id="status" aria-live="polite">Choose a PDF before selecting a study tool.</p>
+        </section>
+
+        <section class="panel tools-panel" id="tools">
+          <h2>✨ &nbsp; What would you like to do?</h2>
+          <div class="tool-grid">
+            <button class="tool-card summary" data-task="summary"><span class="tool-icon">▤</span><span><b>Summarize</b><small>Get short and easy notes from your PDF.</small></span><i>→</i></button>
+            <button class="tool-card explain" data-task="explain"><span class="tool-icon">✺</span><span><b>Explain</b><small>Understand difficult topics in simple words.</small></span><i>→</i></button>
+            <button class="tool-card mcq" data-task="mcq"><span class="tool-icon">☷</span><span><b>Generate MCQs</b><small>Create practice questions from your material.</small></span><i>→</i></button>
+            <button class="tool-card quiz" data-task="quiz"><span class="tool-icon">🏆</span><span><b>Take a Quiz</b><small>Test your knowledge and review answers.</small></span><i>→</i></button>
+          </div>
+        </section>
+
+        <section class="panel result-panel" id="result">
+          <div class="result-head"><h2>Your study result</h2><button id="copyBtn" class="text-button" disabled>Copy text</button></div>
+          <div id="resultContent" class="result-content">
+            <div class="empty-state"><span>✍️</span><b>Your learning output will appear here.</b><p>Upload a PDF and choose one of the study tools above.</p></div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="right-column">
+        <section class="panel progress-panel">
+          <h2>▥ &nbsp; Your Progress</h2>
+          <div class="progress-body">
+            <div class="progress-ring"><strong id="progressPercent">0%</strong></div>
+            <div class="stats">
+              <div><span class="stat-icon">▤</span><p><b id="notesCount">0</b><small>Notes created</small></p></div>
+              <div><span class="stat-icon green">✓</span><p><b id="quizCount">0</b><small>Study tools used</small></p></div>
+              <div><span class="stat-icon gold">★</span><p><b id="sessionCount">0</b><small>Sessions</small></p></div>
+            </div>
+          </div>
+          <p class="progress-caption">Your activity on this device</p>
+        </section>
+        <section class="panel activity-panel">
+          <h2>◴ &nbsp; Recent Activity</h2>
+          <div id="activityList" class="activity-list"><p class="muted">Your recent study activity will appear here.</p></div>
+        </section>
+        <section class="tip-card" id="about">
+          <span>💡 Study tip</span>
+          <p>Study in short sessions. Test yourself often to remember more.</p>
+        </section>
+      </aside>
+    </section>
+    <footer><span>♡ Built for BSSRV students</span><span>Study Buddy AI &nbsp; | &nbsp; B.Tech ECE</span></footer>
+  </main>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
